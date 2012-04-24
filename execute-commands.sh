@@ -73,6 +73,14 @@ do
 	serverip )
 	    echo "This server's IP address is `curl ifconfig.me`. Write it down!"
 	    ;;
+	diskspace )
+	    echo "here is the server's current disk space information: "
+	    df
+	    ;;
+	tcp )
+	    echo "the server's current active port connections are: "
+	    netstat -a | less
+	    ;;
 	featurerequest* )
 	    i=1;
             while [ "${args[i]}" ]; do
@@ -109,6 +117,8 @@ do
 	    echo "you can enter any of the commands
     calc
     serverip
+    tcp
+    diskspace
     featurerequest [features]
     greet [name] [mood=happily, angrily, sadly, frantically, absentmindedly]
     play
@@ -118,6 +128,7 @@ do
 	    break
 	    ;;
 	*)
+	    echo "that command is not implemented/we won't let you hack our system. Type usage for options."
 	    ;;	
     esac
 done
